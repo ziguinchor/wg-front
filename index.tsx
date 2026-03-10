@@ -1,6 +1,10 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+<<<<<<< HEAD
+=======
+import './index.css';
+>>>>>>> 56ee049 (Initial commit)
 import App from './App';
 
 const rootElement = document.getElementById('root');

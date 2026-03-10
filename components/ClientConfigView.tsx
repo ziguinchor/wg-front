@@ -49,6 +49,16 @@ export const ClientConfigView: React.FC<ClientConfigViewProps> = ({ client }) =>
                 {copied ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
                 {copied ? 'Copied' : 'Copy'}
               </button>
+<<<<<<< HEAD
+=======
+              <button
+                onClick={handleDownload}
+                className="p-2 text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all flex items-center gap-1.5 text-xs font-semibold"
+              >
+                <Download size={14} />
+                Download
+              </button>
+>>>>>>> 56ee049 (Initial commit)
             </div>
           </div>
           <pre className="p-4 bg-slate-900 text-slate-300 rounded-lg overflow-x-auto text-xs font-mono leading-relaxed max-h-[300px] border border-slate-800">
