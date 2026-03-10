@@ -8,12 +8,6 @@ export interface LoginResponse {
 export interface Client {
   id: string;
   name: string;
-<<<<<<< HEAD
-  publicKey: string;
-  ip: string;
-  createdAt: string;
-  revoked: number;
-=======
   username: string;
   publicKey: string;
   ip: string;
@@ -26,7 +20,6 @@ export interface CreateClientData {
   username: string;
   password: string;
   publicKey?: string;
->>>>>>> 56ee049 (Initial commit)
 }
 
 export interface CreateClientResponse extends Client {

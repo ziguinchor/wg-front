@@ -1,9 +1,5 @@
 
-<<<<<<< HEAD
-import { LoginResponse, Client, CreateClientResponse, SyncResponse, HealthResponse } from '../types';
-=======
 import { LoginResponse, Client, CreateClientResponse, SyncResponse, HealthResponse, CreateClientData } from '../types';
->>>>>>> 56ee049 (Initial commit)
 
 const BASE_URL = 'http://51.222.139.224:9191';
 
@@ -46,29 +42,6 @@ export class ApiService {
     return response.json();
   }
 
-<<<<<<< HEAD
-  static async createClient(token: string, name: string): Promise<CreateClientResponse> {
-    const response = await fetch(`${BASE_URL}/api/clients`, {
-      method: 'POST',
-      headers: this.getHeaders(token),
-      body: JSON.stringify({ name }),
-    });
-
-    if (!response.ok) throw new Error('Failed to create client');
-    return response.json();
-  }
-
-  static async createClientWithKey(token: string, name: string, publicKey: string): Promise<CreateClientResponse> {
-    const response = await fetch(`${BASE_URL}/api/clients/by-public-key`, {
-      method: 'POST',
-      headers: this.getHeaders(token),
-      body: JSON.stringify({ name, publicKey }),
-    });
-
-    if (!response.ok) {
-      if (response.status === 400) throw new Error('invalid_public_key');
-      throw new Error('Failed to create client');
-=======
   static async createClient(token: string, data: CreateClientData): Promise<CreateClientResponse> {
     const response = await fetch(`${BASE_URL}/api/clients`, {
       method: 'POST',
@@ -94,7 +67,6 @@ export class ApiService {
       const error = await response.json().catch(() => ({}));
       if (response.status === 400) throw new Error(error.error || 'invalid_public_key');
       throw new Error(error.error || 'Failed to create client');
->>>>>>> 56ee049 (Initial commit)
     }
     return response.json();
   }

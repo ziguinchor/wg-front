@@ -15,11 +15,7 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { ApiService } from './services/api';
-<<<<<<< HEAD
-import { Client, AuthState, CreateClientResponse } from './types';
-=======
 import { Client, AuthState, CreateClientResponse, CreateClientData } from './types';
->>>>>>> 56ee049 (Initial commit)
 import { Modal } from './components/Modal';
 import { ClientForm } from './components/ClientForm';
 import { ClientConfigView } from './components/ClientConfigView';
@@ -92,25 +88,15 @@ const App: React.FC = () => {
     setClients([]);
   };
 
-<<<<<<< HEAD
-  const handleCreateClient = async (data: { name: string; publicKey?: string }) => {
-=======
   const handleCreateClient = async (data: CreateClientData) => {
->>>>>>> 56ee049 (Initial commit)
     if (!auth.token) return;
     setLoading(true);
     try {
       let response: CreateClientResponse;
       if (data.publicKey) {
-<<<<<<< HEAD
-        response = await ApiService.createClientWithKey(auth.token, data.name, data.publicKey);
-      } else {
-        response = await ApiService.createClient(auth.token, data.name);
-=======
         response = await ApiService.createClientWithKey(auth.token, data);
       } else {
         response = await ApiService.createClient(auth.token, data);
->>>>>>> 56ee049 (Initial commit)
       }
       setCreatedClient(response);
       setSuccess(`Client ${response.name} created successfully.`);
@@ -126,13 +112,8 @@ const App: React.FC = () => {
     if (!auth.token || !window.confirm(`Revoke access for "${name}"? This will remove the peer immediately.`)) return;
     try {
       await ApiService.deleteClient(auth.token, id);
-<<<<<<< HEAD
-      setClients(prev => prev.filter(c => c.id !== id));
-      setSuccess(`Revoked access for ${name}`);
-=======
       setSuccess(`Revoked access for ${name}`);
       fetchClients();
->>>>>>> 56ee049 (Initial commit)
     } catch (err) {
       setError('Failed to revoke client');
     }
@@ -175,10 +156,7 @@ const App: React.FC = () => {
               <Shield size={40} className="text-white" />
             </div>
             <h1 className="text-3xl font-bold text-white tracking-tight">WireGuard Admin</h1>
-<<<<<<< HEAD
-=======
             <p className="text-slate-400 mt-2">Secure peer management console</p>
->>>>>>> 56ee049 (Initial commit)
           </div>
           
           <form onSubmit={handleLogin} className="bg-white p-8 rounded-2xl shadow-2xl space-y-6">
@@ -222,11 +200,7 @@ const App: React.FC = () => {
           </form>
           
           <p className="text-center text-slate-500 text-sm mt-8">
-<<<<<<< HEAD
-            WireGuard Manager
-=======
             &copy; {new Date().getFullYear()} WireGuard UI. All rights reserved.
->>>>>>> 56ee049 (Initial commit)
           </p>
         </div>
       </div>
@@ -239,13 +213,9 @@ const App: React.FC = () => {
       <header className="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-<<<<<<< HEAD
-           
-=======
             <div className="p-2 bg-indigo-600 rounded-lg">
               <Shield size={20} className="text-white" />
             </div>
->>>>>>> 56ee049 (Initial commit)
             <h1 className="text-lg font-bold text-slate-900 hidden sm:block">WG Manager</h1>
           </div>
           
@@ -290,14 +260,6 @@ const App: React.FC = () => {
         {/* Dashboard Header */}
         <div className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-<<<<<<< HEAD
-            <h2 className="text-2xl font-bold text-slate-900">Clients Registry</h2>
-            <p className="text-slate-500 text-sm mt-1">Manage VPN clients</p>
-          </div>
-          
-          <div className="flex items-center gap-3">
-           
-=======
             <h2 className="text-2xl font-bold text-slate-900">Peers Registry</h2>
             <p className="text-slate-500 text-sm mt-1">Manage VPN clients and synchronize configurations.</p>
           </div>
@@ -311,7 +273,6 @@ const App: React.FC = () => {
               <RefreshCw size={18} className={isSyncing ? 'animate-spin' : ''} />
               <span>{isSyncing ? 'Syncing...' : 'Sync Kernel'}</span>
             </button>
->>>>>>> 56ee049 (Initial commit)
             <button
               onClick={() => {
                 setCreatedClient(null);
@@ -375,29 +336,18 @@ const App: React.FC = () => {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-slate-50 text-slate-600 text-xs font-semibold uppercase tracking-wider">
-<<<<<<< HEAD
-                  <th className="px-6 py-4">Client Name</th>
-                  <th className="px-6 py-4">IP Address</th>
-                  <th className="px-6 py-4">Public Key</th>
-                  <th className="px-6 py-4">Created At</th>
-=======
                   <th className="px-6 py-4">Client Name / User</th>
                   <th className="px-6 py-4">IP Address</th>
                   <th className="px-6 py-4">Public Key</th>
                   <th className="px-6 py-4">Created At</th>
                   <th className="px-6 py-4">Status</th>
->>>>>>> 56ee049 (Initial commit)
                   <th className="px-6 py-4 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {loading && clients.length === 0 ? (
                   <tr>
-<<<<<<< HEAD
-                    <td colSpan={5} className="px-6 py-12 text-center text-slate-500">
-=======
                     <td colSpan={6} className="px-6 py-12 text-center text-slate-500">
->>>>>>> 56ee049 (Initial commit)
                       <div className="flex flex-col items-center gap-3">
                         <div className="w-8 h-8 border-3 border-indigo-600/30 border-t-indigo-600 rounded-full animate-spin" />
                         <p>Loading clients...</p>
@@ -409,14 +359,10 @@ const App: React.FC = () => {
                     <tr key={client.id} className="hover:bg-slate-50/80 transition-colors group">
                       <td className="px-6 py-4">
                         <div className="font-semibold text-slate-900">{client.name}</div>
-<<<<<<< HEAD
-                        <div className="text-xs text-slate-400 font-mono">ID: {client.id}</div>
-=======
                         <div className="text-xs text-slate-500 flex items-center gap-1">
                           <User size={10} /> {client.username}
                         </div>
                         <div className="text-[10px] text-slate-400 font-mono mt-0.5">ID: {client.id}</div>
->>>>>>> 56ee049 (Initial commit)
                       </td>
                       <td className="px-6 py-4">
                         <span className="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-bold rounded-md border border-indigo-100">
@@ -431,15 +377,6 @@ const App: React.FC = () => {
                       <td className="px-6 py-4 text-sm text-slate-500">
                         {new Date(client.createdAt).toLocaleDateString()}
                       </td>
-<<<<<<< HEAD
-                      <td className="px-6 py-4 text-right">
-                        <button
-                          onClick={() => handleDeleteClient(client.id, client.name)}
-                          className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all opacity-0 group-hover:opacity-100"
-                        >
-                          <Trash2 size={18} />
-                        </button>
-=======
                       <td className="px-6 py-4">
                         {client.revoked ? (
                           <span className="px-2 py-1 bg-red-50 text-red-700 text-[10px] font-bold rounded-md border border-red-100 uppercase tracking-wider">
@@ -461,17 +398,12 @@ const App: React.FC = () => {
                             <Trash2 size={18} />
                           </button>
                         )}
->>>>>>> 56ee049 (Initial commit)
                       </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-<<<<<<< HEAD
-                    <td colSpan={5} className="px-6 py-12 text-center text-slate-500 italic">
-=======
                     <td colSpan={6} className="px-6 py-12 text-center text-slate-500 italic">
->>>>>>> 56ee049 (Initial commit)
                       No clients found matching your search.
                     </td>
                   </tr>
@@ -535,11 +467,7 @@ const App: React.FC = () => {
 
       <footer className="py-6 border-t border-slate-200 bg-white">
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center text-sm text-slate-500">
-<<<<<<< HEAD
-          <p>WireGuard Manager.</p>
-=======
           <p>© 2026 WireGuard Web UI. All rights reserved.</p>
->>>>>>> 56ee049 (Initial commit)
           <div className="flex gap-4">
             <span className="flex items-center gap-1">
               <Activity size={14} className="text-emerald-500" /> API: Healthy
