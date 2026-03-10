@@ -1,0 +1,5 @@
+{
+  "name": "WireGuard Manager Admin",
+  "description": "A high-performance dashboard for managing WireGuard clients, featuring secure JWT authentication, client creation (server-generated or custom keys), and real-time synchronization.",
+  "requestFramePermissions": []
+}
